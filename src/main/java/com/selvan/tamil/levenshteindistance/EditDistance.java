@@ -5,6 +5,8 @@
  */
 package com.selvan.tamil.levenshteindistance;
 
+import java.util.Scanner;
+
 /**
  *
  * @author tamil
@@ -45,7 +47,7 @@ public class EditDistance {
                 }
             }
         }
-        printActualEdits(temp, str1, str2);
+//        printActualEdits(temp, str1, str2);
         return temp[str1.length][str2.length];
 
     }
@@ -86,10 +88,22 @@ public class EditDistance {
     }
 
     public static void main(String args[]) {
-        String str1 = "azced";
-        String str2 = "abcdef";
+
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter String 1 : ");
+        String str1 = s.next();
+        System.out.println("Enter String 2 : ");
+        String str2 = s.next();
+        if ((str1.length() == 0) && (str2.length() == 0)) {
+            System.out.println("Both the Strings cannot be empty");
+            return;
+        } else if ((str1.length() == 0) && (str2.length() > 0)) {
+            str1 = "";
+        } else if ((str1.length() > 0) && (str2.length() == 0)) {
+            str2 = "";
+        }
         EditDistance editDistance = new EditDistance();
         int result = editDistance.dynamicEditDistance(str1.toCharArray(), str2.toCharArray());
-        System.out.println(result);
+        System.out.println("Minimum no of edits required = " + result);
     }
 }
